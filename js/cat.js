@@ -33,10 +33,24 @@
     }
 
     function connect() {
-        var sid = getQueryVariable("id");
-        var nickname = getQueryVariable("name");
-        if (url == '' || nickname == '') {
-            alert("房间号和用户名不能为空");
+        var sid,nickname;
+        if(document.getElementById("id") && document.getElementById("name"))
+        {
+          sid=document.getElementById('id').value;
+          nickname=document.getElementById('name').value;
+        }
+        else if(document.getElementById("name"))
+        {
+          sid="jyb666";
+          nickname=document.getElementById('name').value;
+        }
+        else
+        {
+          sid = getQueryVariable("id");
+          nickname = getQueryVariable("name");
+        }
+        if (sid == '' || nickname == '') {
+            alert("房间号或用户名不能为空");
             return;
         }
         var url = 'ws://www.javashitang.com:8090/groupChat/' + sid + '/' + nickname;
